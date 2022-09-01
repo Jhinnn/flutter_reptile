@@ -3,7 +3,7 @@ import 'package:dio/adapter.dart';
 
 class DioFactory {
   static Future<String> getString(param, page,
-      {options, cancelToken, data}) async {
+      {isSearch = false, options, cancelToken, data}) async {
     var dio = Dio(); // with default Options
 
 // Set default configs
@@ -25,9 +25,11 @@ class DioFactory {
       };
     };
     try {
+      String url =
+          isSearch ? '?$param&page=$page' : '?$param&page=$page&sort=like';
       Response response =
-          await dio.get('?$param&page=$page', cancelToken: cancelToken, options: options);
-      print('返回结果：$response');
+          await dio.get(url, cancelToken: cancelToken, options: options);
+      print('返回结果：{$param&page=$page}');
       return response.data.toString();
     } catch (e) {
       print(e);

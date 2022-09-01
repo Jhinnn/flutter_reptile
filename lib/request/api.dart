@@ -1,6 +1,6 @@
 import 'package:html/parser.dart';
 import 'package:translator/translator.dart';
-import 'package_model.dart';
+import '../model/package_model.dart';
 import 'http_request.dart';
 
 class Api {
@@ -26,20 +26,18 @@ class Api {
           // final translator = GoogleTranslator();
           // Translation descriptioncn =
           //     await translator.translate(description, to: 'zh-cn');
-          String likeNumber = lefts[i]
+          int likeNumber = int.parse(lefts[i]
               .querySelector(".packages-score-value-number")!
               .nodes
               .first
               .text
-              .toString();
-        
+              .toString());
 
           String xago =
               lefts[i].querySelector(".-x-ago")!.nodes.first.text.toString();
-        
 
-          PackageModel packageModel = PackageModel(title, description,
-              likeNumber, xago, '${Config.baseUrl}/$title');
+          PackageModel packageModel = PackageModel(
+              title, description, likeNumber, xago, '${Config.baseUrl}/$title');
 
           books.add(packageModel);
         }

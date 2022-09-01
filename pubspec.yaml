@@ -40,7 +40,7 @@ dependencies:
   html: ^0.15.0
   translator: ^0.1.7
   easy_refresh: ^3.0.4+2
-  
+  webview_flutter: ^3.0.4
 
 dev_dependencies:
   flutter_test:

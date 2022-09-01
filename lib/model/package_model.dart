@@ -6,7 +6,7 @@ class PackageModel {
   final String description;
 
   //喜欢数
-  final String likes;
+  final int likes;
 
   //更新日期
   final String lastUpdateTime;
