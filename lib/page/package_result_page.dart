@@ -22,7 +22,8 @@ class PackageResultPageState extends State<PackageResultPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Api.fetchPackages("q=${widget.keywords}", index).then((data) {
+    Api.fetchPackages("q=${widget.keywords}", index, isSearch: true)
+        .then((data) {
       setState(() {
         _packages.clear();
         _packages.addAll(data);

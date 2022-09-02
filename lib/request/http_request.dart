@@ -29,10 +29,9 @@ class DioFactory {
           isSearch ? '?$param&page=$page' : '?$param&page=$page&sort=like';
       Response response =
           await dio.get(url, cancelToken: cancelToken, options: options);
-      print('返回结果：{$param&page=$page}');
       return response.data.toString();
     } catch (e) {
-      print(e);
+      print('请求失败！');
       return '';
     }
   }

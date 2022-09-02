@@ -18,8 +18,15 @@ class PackageSettingPageState extends State<PackageSettingPage> {
         appBar: AppBar(
           title: const Text("设置"),
         ),
-        body: const Center(
-          child: Text("正在加载数据..."),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              FlutterLogo(
+                size: 120,
+              ),
+            ],
+          ),
         ));
   }
 }

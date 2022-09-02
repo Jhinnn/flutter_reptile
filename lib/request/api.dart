@@ -5,11 +5,13 @@ import 'http_request.dart';
 
 class Api {
   static Future<List<PackageModel>> fetchPackages(
-      String pubName, int page) async {
+      String pubName, int page,
+      {bool isSearch = false}) async {
     List<PackageModel> books = [];
     try {
       //获取到整个网页的代码数据
-      var response = await DioFactory.getString(pubName, page);
+      var response =
+          await DioFactory.getString(pubName, page, isSearch: isSearch);
       var document = parse(response); //将String 转换为document对象
       var content = document
           .querySelector(".packages"); //找到标签中librarylist的节点，类选择器节点的查找前面要加个.

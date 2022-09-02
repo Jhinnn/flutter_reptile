@@ -1,6 +1,4 @@
-import 'package:easy_refresh/easy_refresh.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_reptile/constants/app_colors.dart';
 import 'package:flutter_reptile/page/package_result_page.dart';
 
 class PackageColumnPage extends StatefulWidget {
@@ -14,24 +12,48 @@ class PackageColumnPageState extends State<PackageColumnPage> {
   final Map<String, List<String>> _item = {
     '组件': [
       // 'animation',
+      'text',
       'button',
       'calendar',
       'drawing',
       'dialog',
+      'textfield'
       'gesture',
       'listView',
       'picker',
       'popup',
+      'image'
       'progress',
       'scrollView',
       'segment',
       'switch',
     ],
-    '工具': ['launcher', 'compress', 'provider', 'networking'],
+    '工具': [
+      'loading',
+      'launcher',
+      'compress',
+      'provider',
+      'networking',
+      'validator',
+      'date_format'
+          'qr',
+      'pinyin'
+    ],
     '系统': [
       'system',
       'window',
       'file',
+      'image_picker',
+      'camera',
+      'photo',
+      'address book',
+      'map',
+      'permission',
+      'path',
+    ],
+    '其他': [
+      'log',
+      'provider',
     ],
   };
 
@@ -49,23 +71,25 @@ class PackageColumnPageState extends State<PackageColumnPage> {
           child: SingleChildScrollView(
             child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: _item.values.map((e) {
+                children: _item.keys.map((e) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          _item.keys.first,
+                          e,
                           style: Theme.of(context).textTheme.headline6,
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 10,
                         ),
                         Wrap(
-                          runSpacing: 8,
+                          runSpacing: 4,
                           spacing: 8,
-                          children: e.map((e) => columnItem(e)).toList(),
+                          children: (_item[e] as List)
+                              .map((e) => columnItem(e))
+                              .toList(),
                         )
                       ],
                     ),
@@ -76,21 +100,12 @@ class PackageColumnPageState extends State<PackageColumnPage> {
   }
 
   Widget columnItem(String title) {
-    return InkWell(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => PackageResultPage(keywords: title))),
-      child: Container(
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: AppColors.themeColor),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Text(
-            title,
-            style: const TextStyle(color: Colors.white),
-          ),
-        ),
-      ),
-    );
+    return TextButton(
+        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+            builder: (_) => PackageResultPage(keywords: title))),
+        child: Text(
+          title,
+          // style: Theme.of(context).textTheme.labelMedium,
+        ));
   }
 }
